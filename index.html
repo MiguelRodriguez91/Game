@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lab 8</title>
+</head>
+
+<body>
+    <h1>Lab 8 - Game </h1>
+    <p>Choose rock, paper or scissors and play against the system</p>
+    <button onclick="play()">Play</button>
+    <p id="result"></p>
+
+    <script>
+        function play() {
+
+            let playerChoice = prompt("Choose rock, paper or scissors:");
+
+            if (playerChoice == null) {
+                document.getElementById("result").textContent = "cancelled";
+            }
+            else {
+
+                playerChoice = playerChoice.toLowerCase();
+
+                if (playerChoice == "rock" || playerChoice == "paper" || playerChoice == "scissors") {
+
+                    let number = Math.floor(Math.random() * 3);
+                    let computerChoice = "";
+
+                    if (number == 0) {
+                        computerChoice = "rock";
+                    }
+                    else if (number == 1) {
+                        computerChoice = "paper";
+                    }
+                    else {
+                        computerChoice = "scissors";
+                    }
+
+                    let message = "";
+
+                    if (playerChoice == computerChoice) {
+                        message = "It's a draw!";
+                    }
+                    else if (
+                        (playerChoice == "rock" && computerChoice == "scissors") ||
+                        (playerChoice == "paper" && computerChoice == "rock") ||
+                        (playerChoice == "scissors" && computerChoice == "paper")
+                    ) {
+                        message = "You win!";
+                    }
+                    else {
+                        message = "Computer wins!";
+                    }
+
+                    document.getElementById("result").textContent =
+                        "You chose " + playerChoice +
+                        ". Computer chose " + computerChoice +
+                        ". " + message;
+
+                }
+                else {
+                    document.getElementById("result").textContent =
+                        "Please enter rock, paper or scissors.";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
